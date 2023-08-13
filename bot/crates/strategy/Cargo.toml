@@ -21,6 +21,7 @@ ethers = {version = "2.0.7", features = ["abigen", "ws"]}
 foundry-evm = { git = "https://github.com/mouseless-eth/foundry.git", branch = "ethers-version-change" }
 anvil = { git = "https://github.com/mouseless-eth/foundry.git", branch = "ethers-version-change" }
 eth-encode-packed = "0.1.0"
+mev-share-sse = { git = "https://github.com/mattsse/mev-share-rs" }
 
 # Logging
 colored = "2.0.0"
@@ -29,6 +30,7 @@ indicatif = "0.17.5"
 
 # Artemis
 artemis-core = { path = "../artemis-core" }
+
 
 [dev-dependencies]
 fern = {version = "0.6.2", features = ["colored"]}

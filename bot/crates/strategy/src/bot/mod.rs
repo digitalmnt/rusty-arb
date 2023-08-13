@@ -123,11 +123,22 @@ impl<M: Middleware + 'static> Strategy<Event, Action> for SandoBot<M> {
                 }
             },
             Event::NewTransaction(tx) => self.process_new_tx(tx).await,
+            Event::MevShareCollector(event) => match self.process_mev_share_event(event).await {
+                Ok(_) => None,
+                Err(e) => {
+                    panic!("strategy is out of sync {}", e);
+                }
+            },
         }
     }
 }
 
 impl<M: Middleware + 'static> SandoBot<M> {
+    async fn process_mev_share_event(&mut self, event: mev_share_sse::Event) -> Result<()> {
+        dbg!(event);
+        Ok(())
+    }
+
     /// Process new blocks as they come in
     async fn process_new_block(&mut self, event: NewBlock) -> Result<()> {
         log_new_block_info!(event);

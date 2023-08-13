@@ -24,6 +24,7 @@ use crate::helpers::sign_eip1559;
 pub enum Event {
     NewBlock(NewBlock),
     NewTransaction(Transaction),
+    MevShareCollector(mev_share_sse::Event),
 }
 
 /// Core Action enum for current strategy
@@ -282,7 +283,7 @@ impl SandoRecipe {
             gas: Some((U256::from(self.backrun_gas_used) * 10) / 7),
             value: Some(self.backrun.value.into()),
             data: Some(self.backrun.data.into()),
-            nonce: Some(nonce+1),
+            nonce: Some(nonce + 1),
             access_list: access_list_to_ethers(self.backrun.access_list),
             max_priority_fee_per_gas: Some(max_fee),
             max_fee_per_gas: Some(max_fee),
